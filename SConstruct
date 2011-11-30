@@ -37,8 +37,8 @@ def getThirdPartyShortNames():
     for x in os.listdir( "third_party" ):
         if not x.endswith( ".py" ) or x.find( "#" ) >= 0:
             continue
-		(left, right) = x.rsplit(".",1)
-		lst.append( left )
+        (left, right) = x.rsplit(".",1)
+        lst.append( left )
     return lst
 
 
