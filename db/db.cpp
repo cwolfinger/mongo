@@ -573,6 +573,7 @@ int main(int argc, char* argv[]) {
     ("nohttpinterface", "disable http interface")
     ("nojournal", "disable journaling (journaling is on by default for 64 bit)")
     ("noprealloc", "disable data file preallocation - will often hurt performance")
+    ("allocateFixedSizes", "allocate fixed size records - will help with frequent delete use cases")
     ("noscripting", "disable scripting engine")
     ("notablescan", "do not allow table scans")
     ("nssize", po::value<int>()->default_value(16), ".ns file size (in MB) for new databases")
@@ -794,6 +795,10 @@ int main(int argc, char* argv[]) {
             cmdLine.smallfiles = true;
             assert( dur::DataLimitPerJournalFile >= 128 * 1024 * 1024 );
             dur::DataLimitPerJournalFile = 128 * 1024 * 1024;
+        }
+        if (params.count("allocateFixedSizes"))
+        {
+            cmdLine.allocateFixedSizes = true;
         }
         if (params.count("diaglog")) {
             int x = params["diaglog"].as<int>();
